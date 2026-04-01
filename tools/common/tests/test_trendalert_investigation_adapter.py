@@ -133,6 +133,29 @@ class TrendAlertInvestigationAdapterTests(unittest.TestCase):
         request_b = adapt_trend_alert(copy.deepcopy(alert))
         self.assertEqual(request_a, request_b)
 
+    # MVP3-TC09 (P1)
+    def test_malformed_next_step_type_returns_noop(self):
+        alert = _alert_from_fixture("trend-fixture-002-multi-source-breakout.json")
+        alert["nextStep"] = ["claim-tracing"]
+        self.assertIsNone(adapt_trend_alert(alert))
+
+    # MVP3-TC11 (P1)
+    def test_mapped_workflow_with_empty_inputs_returns_noop(self):
+        alert = {
+            "schemaVersion": "0.1.0",
+            "alertId": "empty-input-001",
+            "generatedAt": "2026-01-01T00:00:00Z",
+            "status": "new",
+            "topic": {"label": "   "},
+            "confidence": "medium",
+            "summary": "No usable evidence",
+            "scores": {"corroboration": 0.7},
+            "evidence": [{"url": "", "snippet": "   "}],
+            "nextStep": {"workflow": "claim-tracing", "priority": "p2", "delegateTo": "truth-kit-native"},
+        }
+
+        self.assertIsNone(adapt_trend_alert(alert))
+
     # MVP3-TC10 (P2)
     def test_sparse_but_valid_alert_transforms_with_defaults(self):
         alert = {

@@ -46,21 +46,41 @@ def _build_inputs(alert: Dict[str, Any]) -> List[Dict[str, str]]:
     return inputs
 
 
+def _extract_workflow(alert: Dict[str, Any]) -> Optional[str]:
+    next_step = alert.get("nextStep")
+    if next_step is None:
+        return "none"
+    if not isinstance(next_step, dict):
+        return None
+
+    workflow = next_step.get("workflow")
+    if workflow is None:
+        return "none"
+    if not isinstance(workflow, str):
+        return None
+
+    return workflow.strip() or "none"
+
+
 def adapt_trend_alert(alert: Dict[str, Any]) -> Optional[Dict[str, Any]]:
-    workflow = ((alert.get("nextStep") or {}).get("workflow") or "none").strip()
-    if workflow == "none":
+    workflow = _extract_workflow(alert)
+    if workflow is None or workflow == "none":
         return None
     query_type = QUERY_TYPE_BY_WORKFLOW.get(workflow)
     if query_type is None:
         raise ValueError(f"Unsupported nextStep.workflow: {workflow!r}")
 
     topic_label = ((alert.get("topic") or {}).get("label") or "").strip()
+    inputs = _build_inputs(alert)
+    if not inputs:
+        return None
+
     return {
         "schemaVersion": "0.1.0",
         "requestId": f"trend-alert:{alert.get('alertId', '')}",
         "queryType": query_type,
         "question": f"Assess provenance and earliest reliable sources for trend '{topic_label}'.",
-        "inputs": _build_inputs(alert),
+        "inputs": inputs,
         "constraints": _compute_constraints(alert, workflow),
         "retrievalPolicy": {
             "cacheMode": "prefer-cache",
