@@ -21,6 +21,23 @@ orchestration, summarization, and escalation.
 - high-volume alert spam
 - opaque black-box "this trend is real" claims
 
+## Non-commercial dependency policy
+
+To avoid lock-in and preserve inspectability, the lurker lane should be built
+without commercial product dependencies.
+
+Policy:
+
+- no closed commercial monitoring platforms as required dependencies
+- no paid vendor API should be required for core ingest/scoring/gating/escalation
+- prefer open protocols (RSS/Atom), open datasets, and open-source/self-hosted tooling
+- if a commercial source is evaluated for comparison, it must remain optional,
+  non-blocking, and clearly documented as non-core
+- all core workflows must remain reproducible in an open stack
+
+This policy applies to architecture decisions, implementation planning, and
+future maintenance work for the lurker lane.
+
 ## Lane architecture (funnel model)
 
 1. **Source adapters**
