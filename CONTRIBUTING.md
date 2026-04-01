@@ -54,6 +54,56 @@ Suggested workflow for domain experts:
 
 You do **not** need to write code to make meaningful contributions.
 
+## Low-friction external contributor path
+
+If you have useful tools, methods, skills, or writeups, you can contribute them
+without spending time adapting to full repo structure first.
+
+**Rule:** substance first, structure second.
+
+Maintainers can normalize structure after review. Contributors should focus on
+clarity and utility.
+
+### Minimum contribution package (fast path)
+
+Please include only:
+
+1. **What this is** (2-4 sentences)
+2. **How to run/use it** (basic invocation)
+3. **What it is good for** (and limits)
+4. **Dependencies/license notes** (if any)
+
+That is enough for an initial PR.
+
+### Suggested drop zones (not strict)
+
+- tools/scripts: `contrib/tools/<name>/`
+- writeups/specs/RFC-like docs: `contrib/writeups/`
+- skills/procedures: `contrib/skills/<name>/`
+
+If your files land elsewhere in a clear way, that is also fine.
+
+### Copy/paste PR template (fast path)
+
+```markdown
+## What this contributes
+<2-4 sentence summary>
+
+## How to use it
+- <command or steps>
+
+## Why it helps
+- <primary use case>
+- <known limits>
+
+## Dependencies / licensing
+- <deps>
+- <license or source terms>
+
+## Optional follow-up ideas
+- <future improvements>
+```
+
 ## Core standards
 
 ### 1. Truth over fluency

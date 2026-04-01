@@ -112,6 +112,7 @@ Completed so far:
 - [tools/archive/CONTRACT.md](tools/archive/CONTRACT.md)
 - [tools/reverse-search/CONTRACT.md](tools/reverse-search/CONTRACT.md)
 - [CONTRIBUTING.md](CONTRIBUTING.md)
+- [contrib/README.md](contrib/README.md)
 - [AGENTS.md](AGENTS.md)
 
 ## License
