@@ -40,6 +40,13 @@ How we use it:
 - [x] Seed minimal benchmark fixture set in `benchmarks/datasets/`
 - [ ] Define first regression run format in `benchmarks/regressions/`
 
+### Influence graphing / source clusters
+
+- [ ] Build source-cluster graphing capability (nodes: sources/accounts, edges: citation/repost/dependence)
+- [ ] Add workflow to detect repeated opinion-amplification paths from state-sponsored/state-affiliated media into influencer narratives
+- [ ] Define influence metrics (frequency, lag, citation depth, direct vs indirect dependence)
+- [ ] Add benchmark fixture for "state-media -> influencer" propagation detection with explicit uncertainty labels
+
 ### Workflows / skills
 
 - [ ] Draft `skills/claim-tracing/README.md` for explicit citation-chain tracing
