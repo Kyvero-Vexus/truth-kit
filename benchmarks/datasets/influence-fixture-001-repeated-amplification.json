@@ -1,0 +1,83 @@
+{
+  "description": "Synthetic propagation fixture for repeated amplification pathway detection (MVP #5)",
+  "state_seed_accounts": ["state_media_alpha", "state_media_beta"],
+  "influencer_seed_accounts": ["influencer_echo", "influencer_vector"],
+  "events": [
+    {
+      "id": "e1",
+      "content_id": "c1",
+      "account": "state_media_alpha",
+      "timestamp": "2026-03-30T12:00:00Z",
+      "uncertainty": "verified"
+    },
+    {
+      "id": "e2",
+      "content_id": "c1",
+      "account": "influencer_echo",
+      "timestamp": "2026-03-30T12:05:00Z",
+      "amplified_from_event_id": "e1",
+      "uncertainty": "likely"
+    },
+    {
+      "id": "e3",
+      "content_id": "c1",
+      "account": "community_forum_1",
+      "timestamp": "2026-03-30T12:07:00Z",
+      "amplified_from_event_id": "e2",
+      "uncertainty": "unknown"
+    },
+    {
+      "id": "e4",
+      "content_id": "c2",
+      "account": "state_media_alpha",
+      "timestamp": "2026-03-30T14:00:00Z",
+      "uncertainty": "verified"
+    },
+    {
+      "id": "e5",
+      "content_id": "c2",
+      "account": "influencer_echo",
+      "timestamp": "2026-03-30T14:06:00Z",
+      "amplified_from_event_id": "e4",
+      "uncertainty": "likely"
+    },
+    {
+      "id": "e6",
+      "content_id": "c2",
+      "account": "community_forum_1",
+      "timestamp": "2026-03-30T14:10:00Z",
+      "amplified_from_event_id": "e5",
+      "uncertainty": "disputed"
+    },
+    {
+      "id": "e7",
+      "content_id": "c3",
+      "account": "state_media_beta",
+      "timestamp": "2026-03-30T15:00:00Z",
+      "uncertainty": "likely"
+    },
+    {
+      "id": "e8",
+      "content_id": "c3",
+      "account": "influencer_vector",
+      "timestamp": "2026-03-30T15:04:00Z",
+      "amplified_from_event_id": "e7",
+      "uncertainty": "likely"
+    },
+    {
+      "id": "e9",
+      "content_id": "c4",
+      "account": "state_media_alpha",
+      "timestamp": "2026-03-30T16:00:00Z",
+      "uncertainty": "verified"
+    },
+    {
+      "id": "e10",
+      "content_id": "c4",
+      "account": "influencer_echo",
+      "timestamp": "2026-03-30T16:03:00Z",
+      "amplified_from_event_id": "e9",
+      "uncertainty": "likely"
+    }
+  ]
+}
