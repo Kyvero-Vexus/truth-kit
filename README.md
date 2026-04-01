@@ -135,6 +135,7 @@ Current work so far:
 - architecture for toolkit-first, agent-second development
 - contribution guidance for humans and agents
 - AGPL licensing
+- repository directory skeleton aligned with the architecture doc
 
 ## License
 
