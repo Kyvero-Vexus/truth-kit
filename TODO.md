@@ -87,6 +87,13 @@ How we use it:
 - [ ] Define and run first precision/recall evaluation pass on trend fixtures
 - [ ] Add source-health tracking and auto-slowdown policy implementation
 
+### Long-term stretch goals
+
+- [ ] Draft `docs/news-impact-forecasting.md` for event-to-impact likelihood modeling (e.g., news -> stock movement probability)
+- [ ] Define a schema for impact forecast outputs (target, horizon, probability, confidence, rationale, uncertainty)
+- [ ] Create initial benchmark fixture set for news-impact forecasting calibration
+- [ ] Add explicit non-advisory policy language for impact forecasts (decision support, not financial advice)
+
 ### Documentation / project ops
 
 - [ ] Add `docs/glossary.md` for key terms (provenance, dependence, lineage, confidence labels)

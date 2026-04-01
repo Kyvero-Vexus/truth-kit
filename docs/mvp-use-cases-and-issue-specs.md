@@ -217,3 +217,38 @@ MVP is considered done when:
 - at least one end-to-end report is produced from live trend -> escalation -> provenance output,
 - uncertainty and provenance labels are present in all outputs,
 - load-discipline controls are active in retrieval components.
+
+## Post-MVP stretch goal (long-term)
+
+### Issue-ready stretch spec: News-to-impact likelihood forecasting
+
+**Title:** Stretch: Event impact likelihood forecasting (decision-support)
+
+**Problem:** Teams often need to estimate whether a specific news event is
+likely to affect downstream systems (e.g., stock movement, sector volatility,
+macro indicators), but current workflows are ad hoc and opaque.
+
+**Goal:** Given a news event or event cluster, output calibrated probability
+estimates for impact on selected targets across defined time horizons, with
+explicit rationale and uncertainty.
+
+**Scope (stretch):**
+- event-to-target likelihood estimation
+- horizon-aware outputs (e.g., 1h, 24h, 7d)
+- explanation fields showing key contributing signals
+- calibration tracking against historical outcomes
+
+**Out of scope (stretch):**
+- direct automated trading/execution
+- deterministic predictions presented as certainty
+
+**Acceptance criteria (stretch):**
+- outputs include `target`, `horizon`, `impactProbability`, `confidence`,
+  `rationale`, `uncertainty`
+- includes calibration report over benchmark set
+- includes explicit policy language: decision support only, not financial advice
+
+**Dependencies (stretch):**
+- mature trend + provenance pipelines
+- benchmark corpus for event/impact historical evaluation
+- scoring and calibration tooling

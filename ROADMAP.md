@@ -224,3 +224,13 @@ uncertainty**.
 
 If it does that well, it will be more than a search repo and more than a
 fact-checking repo. It will be infrastructure for disciplined truth-seeking.
+
+## Long-term stretch goals
+
+- **News-to-impact likelihood forecasting:** estimate the probability that a
+  news event affects a downstream target (for example, a stock, sector, or
+  macro indicator), with explicit uncertainty and evidence traceability.
+- **Causal-path introspection:** show which features/signals contributed most to
+  an impact estimate, rather than returning an opaque score.
+- **Policy constraint:** keep this lane decision-support only; avoid normative
+  or advisory framing (e.g., not financial advice).
