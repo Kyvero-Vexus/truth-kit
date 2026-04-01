@@ -92,6 +92,7 @@ Completed so far:
 - [docs/architecture.md](docs/architecture.md)
 - [docs/design-principles.md](docs/design-principles.md)
 - [docs/reporting-format.md](docs/reporting-format.md)
+- [docs/dork-capability-map.md](docs/dork-capability-map.md)
 - [CONTRIBUTING.md](CONTRIBUTING.md)
 - [AGENTS.md](AGENTS.md)
 

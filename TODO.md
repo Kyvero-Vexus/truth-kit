@@ -51,6 +51,14 @@ How we use it:
 - [ ] Draft `agents/single-agent/README.md` with orchestration contract
 - [ ] Define promotion criteria for when multi-agent is justified (benchmark thresholds)
 
+### Dork integration
+
+- [ ] Define shared retrieval/provenance request+response schema in `tools/common/`
+- [ ] Draft `tools/archive/CONTRACT.md` from dork archive discovery patterns
+- [ ] Draft `tools/reverse-search/CONTRACT.md` from dork origin-finding patterns
+- [ ] Add migration notes for delegating to `the-dork` vs truth-kit-native execution
+- [ ] Seed first 3 benchmark fixtures from known dork investigation patterns
+
 ### Documentation / project ops
 
 - [ ] Add `docs/glossary.md` for key terms (provenance, dependence, lineage, confidence labels)
@@ -64,3 +72,4 @@ How we use it:
 - [x] Directory skeleton aligned with architecture
 - [x] Dedupe pass to reduce repetitive doctrine
 - [x] Infrastructure courtesy/load-discipline guidance
+- [x] Added `docs/dork-capability-map.md` (the-dork → truth-kit layer mapping)
