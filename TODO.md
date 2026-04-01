@@ -97,7 +97,7 @@ How we use it:
 ### Documentation / project ops
 
 - [ ] Add `docs/glossary.md` for key terms (provenance, dependence, lineage, confidence labels)
-- [ ] Add first issue batch from this TODO into GitHub Issues
+- [x] Add first issue batch from this TODO into GitHub Issues
 
 ## Done
 
@@ -118,3 +118,4 @@ How we use it:
 - [x] Added trend scoring defaults and TrendAlert -> investigation adapter spec
 - [x] Seeded first trend benchmark fixtures (precision/recall gating scenarios)
 - [x] Added MVP use cases + issue-ready specs doc (`docs/mvp-use-cases-and-issue-specs.md`)
+- [x] Opened first MVP issue batch on GitHub (`#1`-`#5`)
