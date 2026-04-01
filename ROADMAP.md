@@ -156,6 +156,22 @@ Example evaluation targets:
 - reconstruct the spread of an image or quote
 - preserve uncertainty honestly instead of faking certainty
 
+### 9. Live trend lurk and early-signal monitoring
+
+Build a trend-monitoring lane that can detect emerging topics in near-real time
+and hand high-signal items into provenance/research workflows.
+
+Examples:
+
+- live source ingest from selected public channels
+- burst/novelty/persistence scoring for trend candidates
+- confidence-graded alerts with evidence links
+- cross-source corroboration checks
+- escalation routing into claim tracing and archive workflows
+
+This lane should prioritize high-signal alerts over high-volume noise and should
+preserve the same evidence/uncertainty standards as other lanes.
+
 ## Principles
 
 1. **Truth over fluency.** A polished answer is not enough.
@@ -175,6 +191,7 @@ Example evaluation targets:
 - provenance-tracing prototype for explicit citation chains
 - benchmark pack for source recovery and derivative-report detection
 - research protocol templates for evidence logging and uncertainty tracking
+- baseline live-trend ingest + alert format (`topic`, `confidence`, `why it matters`, evidence links, suggested next step)
 
 ### Phase 2 — lineage analysis
 
@@ -183,6 +200,7 @@ Example evaluation targets:
 - claim-mutation comparison tools
 - snapshot diffing across archived versions of a page
 - early authorship-forensics experiments with calibrated reporting
+- trend-corroboration pipeline (cross-source checking + escalation into provenance workflows)
 
 ### Phase 3 — rigorous method packs
 

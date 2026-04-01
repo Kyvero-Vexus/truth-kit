@@ -38,6 +38,7 @@ Current workstreams (summarized):
 - media/authorship forensics
 - research protocol design
 - benchmark and evaluation systems
+- live trend lurk and early-signal monitoring
 
 For detailed scope, priorities, and phases, see [ROADMAP.md](ROADMAP.md).
 
@@ -87,6 +88,7 @@ Completed so far:
 - dork capability mapping + migration notes
 - shared retrieval/provenance schema draft + archive/reverse contracts
 - first 3 dork-derived benchmark fixtures
+- DorXNG fork established under KVC (`Kyvero-Vexus/DorXNG`)
 
 ## Read next
 

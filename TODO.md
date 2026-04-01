@@ -58,6 +58,13 @@ How we use it:
 - [ ] Create benchmark task + scoring docs for the 3 seeded dork fixtures
 - [ ] Draft orchestration notes for hybrid mode (delegate discovery, native reporting)
 
+### Lurker integration
+
+- [ ] Add `docs/lurker-lane.md` with live-monitoring scope, sources, and alert contract
+- [ ] Define trend-event schema (topic, confidence, why-it-matters, evidence links, next step)
+- [ ] Draft ingestion policy for live sources (poll cadence, caching, backoff, quiet hours)
+- [ ] Define escalation rule from trend alert → provenance investigation workflow
+
 ### Documentation / project ops
 
 - [ ] Add `docs/glossary.md` for key terms (provenance, dependence, lineage, confidence labels)
