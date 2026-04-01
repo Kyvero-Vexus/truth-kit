@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kyvero-vexus.github.io/truth-kit/schemas/retrieval-provenance-request.schema.json",
+  "title": "RetrievalProvenanceRequest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "requestId",
+    "queryType",
+    "inputs"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+(\\.[0-9]+)?$"
+    },
+    "requestId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "queryType": {
+      "type": "string",
+      "enum": [
+        "archive.lookup",
+        "archive.fetch",
+        "archive.diff",
+        "reverse.text",
+        "reverse.quote",
+        "reverse.image",
+        "reverse.document"
+      ]
+    },
+    "question": {
+      "type": "string"
+    },
+    "inputs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/inputItem"
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "maxSources": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maxDepth": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "languages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "timeRange": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "start": { "type": "string", "format": "date-time" },
+            "end": { "type": "string", "format": "date-time" }
+          }
+        }
+      }
+    },
+    "retrievalPolicy": {
+      "$ref": "#/$defs/retrievalPolicy"
+    },
+    "provenancePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "labelEvidenceStrength": { "type": "boolean" },
+        "captureHashes": { "type": "boolean" },
+        "captureTimestamps": { "type": "boolean" },
+        "captureAccessPath": { "type": "boolean" }
+      }
+    },
+    "toolHints": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "allowDelegationToDork": { "type": "boolean" },
+        "preferredProviders": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "inputItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["url", "text", "quote", "image", "document", "hash"]
+        },
+        "value": { "type": "string", "minLength": 1 },
+        "mediaType": { "type": "string" },
+        "contentHash": { "type": "string" },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "retrievalPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cacheMode": {
+          "type": "string",
+          "enum": ["prefer-cache", "refresh-if-stale", "network-only", "cache-only"]
+        },
+        "cacheTtlSeconds": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maxConcurrentRequests": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maxRequestsPerHostPerMinute": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "retry": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "maxAttempts": { "type": "integer", "minimum": 0 },
+            "backoff": {
+              "type": "string",
+              "enum": ["none", "linear", "exponential", "exponential-jitter"]
+            }
+          }
+        },
+        "respectRetryAfter": { "type": "boolean" },
+        "respectRobotsTxt": { "type": "boolean" }
+      }
+    }
+  }
+}

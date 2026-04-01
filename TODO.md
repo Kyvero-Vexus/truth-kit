@@ -27,17 +27,17 @@ How we use it:
 
 ### Tools
 
-- [ ] Define interface contract for `tools/archive/` (inputs, outputs, caching behavior, rate-limit behavior)
-- [ ] Define interface contract for `tools/reverse-search/`
+- [x] Define interface contract for `tools/archive/` (inputs, outputs, caching behavior, rate-limit behavior)
+- [x] Define interface contract for `tools/reverse-search/`
 - [ ] Define interface contract for `tools/provenance/`
 - [ ] Define interface contract for `tools/forensics/`
-- [ ] Add shared utility conventions in `tools/common/`
+- [x] Add shared utility conventions in `tools/common/`
 
 ### Benchmarks
 
 - [ ] Create first benchmark task spec in `benchmarks/tasks/`
 - [ ] Create first scoring rubric in `benchmarks/scoring/`
-- [ ] Seed minimal benchmark fixture set in `benchmarks/datasets/`
+- [x] Seed minimal benchmark fixture set in `benchmarks/datasets/`
 - [ ] Define first regression run format in `benchmarks/regressions/`
 
 ### Workflows / skills
@@ -51,13 +51,12 @@ How we use it:
 - [ ] Draft `agents/single-agent/README.md` with orchestration contract
 - [ ] Define promotion criteria for when multi-agent is justified (benchmark thresholds)
 
-### Dork integration
+### Dork integration (phase 2)
 
-- [ ] Define shared retrieval/provenance request+response schema in `tools/common/`
-- [ ] Draft `tools/archive/CONTRACT.md` from dork archive discovery patterns
-- [ ] Draft `tools/reverse-search/CONTRACT.md` from dork origin-finding patterns
-- [ ] Add migration notes for delegating to `the-dork` vs truth-kit-native execution
-- [ ] Seed first 3 benchmark fixtures from known dork investigation patterns
+- [ ] Define `tools/provenance/CONTRACT.md` from dork source-chain patterns
+- [ ] Draft adapter spec for translating `the-dork` outputs into truth-kit shared schema
+- [ ] Create benchmark task + scoring docs for the 3 seeded dork fixtures
+- [ ] Draft orchestration notes for hybrid mode (delegate discovery, native reporting)
 
 ### Documentation / project ops
 
@@ -73,3 +72,7 @@ How we use it:
 - [x] Dedupe pass to reduce repetitive doctrine
 - [x] Infrastructure courtesy/load-discipline guidance
 - [x] Added `docs/dork-capability-map.md` (the-dork → truth-kit layer mapping)
+- [x] Defined shared retrieval/provenance schema in `tools/common/SCHEMA.md` (+ JSON schemas)
+- [x] Drafted `tools/archive/CONTRACT.md` and `tools/reverse-search/CONTRACT.md`
+- [x] Added `docs/dork-migration-notes.md` (delegate vs native execution strategy)
+- [x] Seeded first 3 dork-derived benchmark fixtures in `benchmarks/datasets/`

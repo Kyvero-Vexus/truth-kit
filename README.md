@@ -84,6 +84,9 @@ Completed so far:
 - AGPL licensing
 - initial directory skeleton aligned with architecture
 - baseline design-principles and reporting-format docs
+- dork capability mapping + migration notes
+- shared retrieval/provenance schema draft + archive/reverse contracts
+- first 3 dork-derived benchmark fixtures
 
 ## Read next
 
@@ -93,6 +96,10 @@ Completed so far:
 - [docs/design-principles.md](docs/design-principles.md)
 - [docs/reporting-format.md](docs/reporting-format.md)
 - [docs/dork-capability-map.md](docs/dork-capability-map.md)
+- [docs/dork-migration-notes.md](docs/dork-migration-notes.md)
+- [tools/common/SCHEMA.md](tools/common/SCHEMA.md)
+- [tools/archive/CONTRACT.md](tools/archive/CONTRACT.md)
+- [tools/reverse-search/CONTRACT.md](tools/reverse-search/CONTRACT.md)
 - [CONTRIBUTING.md](CONTRIBUTING.md)
 - [AGENTS.md](AGENTS.md)
 

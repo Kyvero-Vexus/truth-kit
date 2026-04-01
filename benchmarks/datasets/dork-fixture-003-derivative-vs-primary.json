@@ -1,0 +1,49 @@
+{
+  "fixtureId": "dork-fixture-003-derivative-vs-primary",
+  "version": "0.1.0",
+  "patternSource": "the-dork: source-chain tracing + derivative report detection",
+  "taskType": "derivative-vs-primary",
+  "description": "Classify primary and derivative reports and flag likely uncredited dependence.",
+  "input": {
+    "topic": "Port inspection delays",
+    "documents": [
+      {
+        "docId": "pri-1",
+        "url": "https://localpaper.example/investigation/port-delays",
+        "publishedAt": "2024-08-01T07:00:00Z",
+        "text": "Our records request shows 43% of inspections exceeded the legal limit in Q2.",
+        "citations": [],
+        "originalData": true
+      },
+      {
+        "docId": "sec-1",
+        "url": "https://wire.example/business/port-delays",
+        "publishedAt": "2024-08-01T10:30:00Z",
+        "text": "Local Paper reports that 43% of inspections exceeded legal limits in Q2.",
+        "citations": ["https://localpaper.example/investigation/port-delays"]
+      },
+      {
+        "docId": "sec-2",
+        "url": "https://commentary.example/port-backlog",
+        "publishedAt": "2024-08-02T09:10:00Z",
+        "text": "Inspection delays are worse than expected, with 43% exceeding legal limits in Q2.",
+        "citations": []
+      }
+    ]
+  },
+  "expected": {
+    "primaryDocIds": ["pri-1"],
+    "derivativeDocIds": ["sec-1", "sec-2"],
+    "relationshipExpectations": [
+      {
+        "docId": "sec-1",
+        "relationship": "explicit-citation"
+      },
+      {
+        "docId": "sec-2",
+        "relationship": "strong-probable-dependence"
+      }
+    ],
+    "minimumProvenanceConfidence": "medium"
+  }
+}

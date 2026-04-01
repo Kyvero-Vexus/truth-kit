@@ -1,0 +1,57 @@
+{
+  "fixtureId": "dork-fixture-001-known-source-recovery",
+  "version": "0.1.0",
+  "patternSource": "the-dork: multi-pass search + quote origin tracing",
+  "taskType": "known-source-recovery",
+  "description": "Identify the earliest reachable source of a quoted claim and classify downstream dependence.",
+  "input": {
+    "claim": "The North Basin report was quietly revised after publication.",
+    "documents": [
+      {
+        "docId": "src-1",
+        "url": "https://example.org/reports/north-basin-errata",
+        "publishedAt": "2021-05-03T09:00:00Z",
+        "text": "Errata note: the North Basin report was revised after publication due to data correction.",
+        "citations": []
+      },
+      {
+        "docId": "rep-1",
+        "url": "https://news.example.net/story/nb-revision",
+        "publishedAt": "2021-05-04T14:00:00Z",
+        "text": "As first noted in Example Org's errata note, the North Basin report was revised after publication.",
+        "citations": ["https://example.org/reports/north-basin-errata"]
+      },
+      {
+        "docId": "blog-1",
+        "url": "https://blog.example.com/north-basin-analysis",
+        "publishedAt": "2021-05-06T11:30:00Z",
+        "text": "Several outlets now report that the North Basin report was quietly revised after publication.",
+        "citations": ["https://news.example.net/story/nb-revision"]
+      },
+      {
+        "docId": "post-1",
+        "url": "https://social.example/@analyst/8392",
+        "publishedAt": "2021-05-07T08:15:00Z",
+        "text": "North Basin report was quietly revised after publication."
+      }
+    ]
+  },
+  "expected": {
+    "earliestReachableSourceDocId": "src-1",
+    "requiredRelationships": [
+      {
+        "docId": "rep-1",
+        "relationship": "explicit-citation"
+      },
+      {
+        "docId": "blog-1",
+        "relationship": "explicit-citation"
+      },
+      {
+        "docId": "post-1",
+        "relationship": "weak-candidate-dependence"
+      }
+    ],
+    "minimumProvenanceConfidence": "medium"
+  }
+}

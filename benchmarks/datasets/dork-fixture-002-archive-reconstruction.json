@@ -1,0 +1,48 @@
+{
+  "fixtureId": "dork-fixture-002-archive-reconstruction",
+  "version": "0.1.0",
+  "patternSource": "the-dork: archive discovery + snapshot comparison",
+  "taskType": "archive-reconstruction",
+  "description": "Reconstruct meaningful claim changes across snapshots of one URL.",
+  "input": {
+    "targetUrl": "https://publisher.example/release/river-study",
+    "snapshots": [
+      {
+        "snapshotId": "s1",
+        "capturedAt": "2022-02-11T12:00:00Z",
+        "archiveProvider": "wayback",
+        "text": "Initial release: no contamination detected in River Sector 9."
+      },
+      {
+        "snapshotId": "s2",
+        "capturedAt": "2022-02-18T12:00:00Z",
+        "archiveProvider": "wayback",
+        "text": "Updated release: low-level contamination detected in River Sector 9."
+      },
+      {
+        "snapshotId": "s3",
+        "capturedAt": "2022-03-01T12:00:00Z",
+        "archiveProvider": "mirror-archive",
+        "text": "Updated release: low-level contamination detected in River Sector 9; mitigation underway."
+      }
+    ]
+  },
+  "expected": {
+    "changeEvents": [
+      {
+        "fromSnapshotId": "s1",
+        "toSnapshotId": "s2",
+        "changeType": "claim-reversal",
+        "summaryContains": "no contamination -> low-level contamination"
+      },
+      {
+        "fromSnapshotId": "s2",
+        "toSnapshotId": "s3",
+        "changeType": "scope-expansion",
+        "summaryContains": "mitigation underway"
+      }
+    ],
+    "minimumSnapshotCoverage": 3,
+    "minimumProvenanceConfidence": "medium"
+  }
+}

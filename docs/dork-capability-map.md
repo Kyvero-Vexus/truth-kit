@@ -140,8 +140,24 @@ Success criteria should include both correctness and provenance quality.
 - no aggressive source hammering; honor cache + backoff discipline
 - no opaque outputs without inspectable evidence trail
 
+## Implemented artifacts (phase A/B baseline)
+
+- shared request/response schema:
+  - `tools/common/SCHEMA.md`
+  - `tools/common/schemas/retrieval-provenance-request.schema.json`
+  - `tools/common/schemas/retrieval-provenance-response.schema.json`
+- draft contracts:
+  - `tools/archive/CONTRACT.md`
+  - `tools/reverse-search/CONTRACT.md`
+- migration decision notes:
+  - `docs/dork-migration-notes.md`
+- seeded fixtures:
+  - `benchmarks/datasets/dork-fixture-001-known-source-recovery.json`
+  - `benchmarks/datasets/dork-fixture-002-archive-reconstruction.json`
+  - `benchmarks/datasets/dork-fixture-003-derivative-vs-primary.json`
+
 ## Open decisions
 
-- when to delegate directly to `the-dork` vs run truth-kit-native tools
-- canonical provenance artifact format (JSON schema)
+- exact adapter format for ingesting `the-dork` results into truth-kit tool calls
 - benchmark threshold required before multi-agent promotion
+- cutover policy for switching from delegated retrieval to native-first execution

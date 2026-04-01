@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kyvero-vexus.github.io/truth-kit/schemas/retrieval-provenance-response.schema.json",
+  "title": "RetrievalProvenanceResponse",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "requestId",
+    "status",
+    "queryType",
+    "results"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+(\\.[0-9]+)?$"
+    },
+    "requestId": { "type": "string", "minLength": 1 },
+    "status": {
+      "type": "string",
+      "enum": ["ok", "partial", "error"]
+    },
+    "queryType": { "type": "string" },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "attemptedProviders": { "type": "integer", "minimum": 0 },
+        "successfulProviders": { "type": "integer", "minimum": 0 },
+        "cacheHits": { "type": "integer", "minimum": 0 },
+        "networkRequests": { "type": "integer", "minimum": 0 },
+        "durationMs": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "results": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/resultItem" }
+    },
+    "evidence": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/evidenceItem" }
+    },
+    "uncertainty": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/uncertaintyItem" }
+    },
+    "errors": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/errorItem" }
+    },
+    "rateLimitObservations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/rateLimitObservation" }
+    },
+    "cacheWrites": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["key", "storedAt"],
+        "properties": {
+          "key": { "type": "string" },
+          "storedAt": { "type": "string", "format": "date-time" },
+          "ttlSeconds": { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "resultItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["resultId", "kind", "source", "provenance"],
+      "properties": {
+        "resultId": { "type": "string" },
+        "kind": {
+          "type": "string",
+          "enum": ["candidate-source", "snapshot", "match", "artifact"]
+        },
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["provider", "url", "retrievedAt", "accessPath"],
+          "properties": {
+            "provider": { "type": "string" },
+            "url": { "type": "string" },
+            "retrievedAt": { "type": "string", "format": "date-time" },
+            "accessPath": { "type": "string", "enum": ["cache", "network"] },
+            "httpStatus": { "type": "integer", "minimum": 100, "maximum": 599 }
+          }
+        },
+        "content": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "title": { "type": "string" },
+            "snippet": { "type": "string" },
+            "contentHash": { "type": "string" },
+            "mediaType": { "type": "string" }
+          }
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenanceAssessment"
+        }
+      }
+    },
+    "provenanceAssessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["relationship", "confidence"],
+      "properties": {
+        "relationship": {
+          "type": "string",
+          "enum": [
+            "explicit-citation",
+            "direct-reuse",
+            "strong-probable-dependence",
+            "weak-candidate-dependence",
+            "unresolved"
+          ]
+        },
+        "confidence": {
+          "type": "string",
+          "enum": ["high", "medium", "low", "unresolved"]
+        },
+        "rationale": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "evidenceRefs": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "evidenceItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidenceId", "kind", "description"],
+      "properties": {
+        "evidenceId": { "type": "string" },
+        "kind": { "type": "string" },
+        "description": { "type": "string" }
+      }
+    },
+    "uncertaintyItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message"],
+      "properties": {
+        "code": { "type": "string" },
+        "message": { "type": "string" }
+      }
+    },
+    "errorItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message"],
+      "properties": {
+        "code": { "type": "string" },
+        "message": { "type": "string" },
+        "provider": { "type": "string" },
+        "retryable": { "type": "boolean" }
+      }
+    },
+    "rateLimitObservation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "event"],
+      "properties": {
+        "provider": { "type": "string" },
+        "event": {
+          "type": "string",
+          "enum": ["429", "backoff-applied", "retry-after-honored", "concurrency-reduced"]
+        },
+        "details": { "type": "string" }
+      }
+    }
+  }
+}
