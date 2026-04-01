@@ -34,3 +34,5 @@ The working thesis is simple: large language models are not truth machines, but 
 ## Status
 
 Initial repository scaffold. README first; tools and methods next.
+
+See also: [ROADMAP.md](ROADMAP.md)
