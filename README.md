@@ -103,6 +103,7 @@ Completed so far:
 - [docs/dork-migration-notes.md](docs/dork-migration-notes.md)
 - [docs/lurker-lane.md](docs/lurker-lane.md)
 - [docs/mvp-use-cases-and-issue-specs.md](docs/mvp-use-cases-and-issue-specs.md)
+- [docs/mvp-test-cases.md](docs/mvp-test-cases.md)
 - [tools/common/SCHEMA.md](tools/common/SCHEMA.md)
 - [tools/common/RSS-ADAPTER-CONTRACT.md](tools/common/RSS-ADAPTER-CONTRACT.md)
 - [tools/common/TREND-SCORING.md](tools/common/TREND-SCORING.md)
