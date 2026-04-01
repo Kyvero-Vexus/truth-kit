@@ -136,6 +136,7 @@ Current work so far:
 - contribution guidance for humans and agents
 - AGPL licensing
 - repository directory skeleton aligned with the architecture doc
+- baseline design-principles and reporting-format docs
 
 ## License
 
@@ -145,6 +146,8 @@ GNU Affero General Public License, version 3 or later.
 
 - [ROADMAP.md](ROADMAP.md)
 - [docs/architecture.md](docs/architecture.md)
+- [docs/design-principles.md](docs/design-principles.md)
+- [docs/reporting-format.md](docs/reporting-format.md)
 - [CONTRIBUTING.md](CONTRIBUTING.md)
 - [AGENTS.md](AGENTS.md)
 - [LICENSE](LICENSE)
