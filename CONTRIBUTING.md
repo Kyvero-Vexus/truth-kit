@@ -29,6 +29,31 @@ We welcome contributions in several categories:
 - **reports/examples** — worked investigations, failure analyses, comparisons of methods
 - **documentation** — architecture, methodology, usage guides, caveats
 
+## Domain-expert contributions (journalism + research methods)
+
+Non-code contributions are first-class here.
+
+If you are a journalist, researcher, professor, fact-checker, or editor, your
+methodological input is especially valuable.
+
+High-impact contribution paths:
+
+- **method review** — critique inference rules, evidence thresholds, and failure modes
+- **source-criticism guidance** — strengthen provenance and attribution methodology
+- **benchmark curation** — propose realistic cases, edge cases, and adversarial scenarios
+- **annotation/rubric design** — improve confidence labels and uncertainty language
+- **worked case studies** — provide example investigations and postmortems
+- **red-team review** — identify where outputs overstate confidence or miss ambiguity
+
+Suggested workflow for domain experts:
+
+1. Open a GitHub issue titled `Method review: <topic>` or `Benchmark proposal: <topic>`.
+2. Include concrete examples (links, excerpts, or synthetic mini-cases).
+3. State what should change and how to measure improvement.
+4. If helpful, submit a docs-only PR (no code required).
+
+You do **not** need to write code to make meaningful contributions.
+
 ## Core standards
 
 ### 1. Truth over fluency
