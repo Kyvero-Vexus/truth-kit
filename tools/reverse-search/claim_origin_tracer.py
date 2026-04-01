@@ -164,6 +164,17 @@ def trace_claim_origin(request: Dict[str, Any]) -> Dict[str, Any]:
         ranked.append((doc, overlap))
 
     ranked.sort(key=lambda x: (_parse_time(x[0].get("publishedAt", "9999-12-31T00:00:00Z")), -x[1]))
+
+    if all(overlap <= 0.0 for _, overlap in ranked):
+        response["status"] = "partial"
+        response["uncertainty"].append(
+            {
+                "code": "no-plausible-candidates",
+                "message": "No candidate document has lexical overlap with the query; corpus may be incomplete.",
+            }
+        )
+        return response
+
     earliest = ranked[0][0]
     earliest_url = earliest["url"]
 
