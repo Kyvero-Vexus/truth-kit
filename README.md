@@ -88,6 +88,7 @@ Completed so far:
 ## Read next
 
 - [ROADMAP.md](ROADMAP.md)
+- [TODO.md](TODO.md)
 - [docs/architecture.md](docs/architecture.md)
 - [docs/design-principles.md](docs/design-principles.md)
 - [docs/reporting-format.md](docs/reporting-format.md)
