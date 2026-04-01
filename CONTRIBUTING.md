@@ -14,6 +14,8 @@ Before contributing, read:
 - [README.md](README.md)
 - [ROADMAP.md](ROADMAP.md)
 - [docs/architecture.md](docs/architecture.md)
+- [docs/design-principles.md](docs/design-principles.md)
+- [docs/reporting-format.md](docs/reporting-format.md)
 - [AGENTS.md](AGENTS.md) if you are contributing through an AI agent or agent-assisted workflow
 
 ## What kinds of contributions fit here

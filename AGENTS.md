@@ -1,170 +1,99 @@
 # AGENTS.md
 
-Guidance for AI agents contributing to `truth-kit`.
+Agent-specific guidance for contributing to `truth-kit`.
 
-This repository exists to build **truth-seeking infrastructure**: methods,
-tools, workflows, benchmarks, and eventually agentic interfaces for discovery,
-provenance tracing, and disciplined research.
+This file is intentionally a **delta** from [CONTRIBUTING.md](CONTRIBUTING.md).
+If a rule is general (human + agent), prefer CONTRIBUTING as the source of
+truth. This file focuses on agent-specific operating discipline.
 
-If you are an agent working here, read these first:
+## Read order for agents
 
-- [README.md](README.md)
-- [ROADMAP.md](ROADMAP.md)
-- [docs/architecture.md](docs/architecture.md)
-- [CONTRIBUTING.md](CONTRIBUTING.md)
+1. [README.md](README.md)
+2. [ROADMAP.md](ROADMAP.md)
+3. [docs/architecture.md](docs/architecture.md)
+4. [docs/design-principles.md](docs/design-principles.md)
+5. [docs/reporting-format.md](docs/reporting-format.md)
+6. [CONTRIBUTING.md](CONTRIBUTING.md)
 
-## The short version
+## Agent mandate
 
-- Build the **toolkit first**; do not bury core logic inside an agent.
-- Prefer **inspectable tools** over prompt-only magic.
-- Preserve **evidence trails** and **source lineage**.
-- Keep **uncertainty visible**.
-- Do not overclaim on authorship or "AI detection."
-- Favor **benchmarkable** and **reproducible** contributions.
+When implementing work in this repo:
 
-## Architectural rule
+- treat yourself as an orchestrator of explicit methods and tools
+- preserve evidence trails and source lineage
+- keep uncertainty visible in outputs
+- avoid confident prose that outruns evidence
 
-The intended stack is:
+## Architecture constraints (agent-specific)
+
+Use this stack order unless explicitly justified otherwise:
 
 1. methods
 2. tools
-3. workflows / skills
-4. agent
-5. multi-agent orchestration only if earned
+3. workflows/skills
+4. agent interface
+5. multi-agent orchestration (only after benchmark evidence)
 
-Do not invert this stack.
+### Practical rule
 
-Bad pattern:
-- start with a chatty agent and improvise all capabilities in prompts
+Do not hide core capability inside prompt-only behavior if that capability
+should exist as a reusable tool.
 
-Better pattern:
-- define the method
-- build or expose the tool
-- wrap it in a workflow
-- let an agent orchestrate it
+Bad:
+- provenance logic only exists in an agent prompt
 
-## What to optimize for
-
-### 1. Truth over fluency
-
-A smooth answer is not enough. Optimize for evidence quality, provenance, and
-inspectability.
-
-### 2. Reusability
-
-If you build a serious capability, it should ideally be usable outside the main
-agent interface.
-
-Examples:
-
-- CLI tool
-- library module
-- reproducible notebook
-- batch benchmark runner
-
-### 3. Honest uncertainty
-
-If the evidence is weak, say it is weak.
-
-Do not convert tentative signals into confident prose. The system should surface:
-
-- what is known
-- what is likely
-- what is plausible but weak
-- what remains unknown
-
-### 4. Benchmarkability
-
-Whenever possible, new capabilities should be testable on benchmark tasks or at
-least demonstrated with worked examples.
+Good:
+- provenance logic exists as a tool/library; agent invokes it
 
 ## Provenance discipline
 
-When handling claims, quotes, images, or documents, distinguish carefully among:
+When making lineage claims, label evidence strength explicitly:
 
 - explicit citation
-- direct quotation
-- near-duplicate reproduction
-- probable paraphrase or dependence
-- weaker resemblance
-- unsupported speculation
+- direct reuse
+- strong probable dependence
+- weaker candidate dependence
+- unresolved/insufficient evidence
 
-Similarity alone is not provenance.
+Similarity by itself is not provenance.
 
-## Authorship / AI-detection caution
+## Authorship / machine-generation caution
 
-This repository should not become a factory for bogus certainty.
+Do not produce binary "human vs AI" verdict theater.
 
-If you work on authorship or machine-generation analysis:
+Prefer:
 
-- present indicators, not oracles
-- prefer calibrated language
-- document failure modes
-- avoid claiming decisive detection without decisive evidence
+- indicators
+- anomaly descriptions
+- confidence calibration
+- failure-mode notes
+- unresolved uncertainty where applicable
 
-## Contribution preferences by layer
+## Output discipline for agent runs
 
-### Methods
+Agent-produced reports should conform to
+[docs/reporting-format.md](docs/reporting-format.md), including:
 
-Method docs should define:
+- question + scope
+- method summary
+- evidence trail
+- findings + counterevidence
+- uncertainty + limitations
+- next steps
 
-- the question type
-- evidence model
-- inference rules
-- reporting format
-- failure modes
+## Repo hygiene for agents
 
-### Tools
-
-Tools should be explicit about:
-
-- inputs
-- outputs
-- dependencies
-- what is deterministic vs heuristic
-- what evidence they emit for later inspection
-
-### Workflows / skills
-
-Workflows should specify:
-
-- required inputs
-- ordered steps
-- branch points
-- validation checks
-- evidence capture
-- output structure
-
-### Agents
-
-Agents should be thin orchestrators.
-
-They should:
-
-- choose workflows
-- gather missing inputs
-- execute tools in order
-- preserve artifacts
-- report uncertainty honestly
-
-They should not hide crucial reasoning or evidence in uninspectable prose.
-
-## Repo hygiene
-
-- Keep documentation aligned with actual behavior.
-- If you add a major new capability, update relevant docs.
-- Prefer small, coherent commits.
-- Do not commit secrets, tokens, or private corpora.
-- Treat public examples as truly public.
+- keep commits coherent and scoped
+- update docs when behavior changes
+- never commit secrets or private data
+- avoid introducing duplicated doctrine when a canonical doc already exists
 
 ## Decision heuristic
 
-When unsure between two implementations, prefer the one that is:
+If multiple implementations are possible, prefer the one that is:
 
 - more inspectable
-- more reproducible
+- easier to reproduce
 - easier to benchmark
 - less likely to overstate conclusions
-- more reusable outside an agent runtime
-
-That is usually the right choice for `truth-kit`.
+- more reusable outside agent runtime

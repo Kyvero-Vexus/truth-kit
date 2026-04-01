@@ -1,146 +1,89 @@
 # truth-kit
 
-**truth-kit** is a Kyvero Vexus project for building tools, methods, and
-workflows that help people seek truth more rigorously.
+`truth-kit` is a Kyvero Vexus project for building practical infrastructure for
+truth-seeking research.
 
-The project is not just about finding information. It is about helping people:
+This repo focuses on three things:
 
-- recover hard-to-find or lost material
-- trace where claims, images, quotes, and narratives come from
-- detect when information has been copied, mutated, laundered, or decontextualized
-- reason under uncertainty without collapsing into either gullibility or cynicism
+- finding and recovering information (including hard-to-find and archived material)
+- tracing information lineage (who sourced what from where)
+- keeping reasoning disciplined under uncertainty
 
-Large language models can assist with this work, but they are **not** truth
-machines. In `truth-kit`, they are useful only when constrained by evidence,
-provenance, adversarial checking, and reproducible workflows.
+LLMs are part of the toolkit, not the authority. The project treats model output
+as assistive and requires evidence trails, provenance tracking, and reproducible
+workflows.
 
-## Thesis
+## What this repository builds
 
-`truth-kit` is for **discovery, provenance, and epistemic discipline**.
+`truth-kit` is intentionally a mixed-format toolkit, not just a prompt collection.
 
-The long-term ambition is to help users reconstruct **information lineage under
-uncertainty**.
+Expected components include:
 
-If it succeeds at that, it will be more than a search repo and more than a
-fact-checking repo. It will be infrastructure for disciplined truth-seeking.
-
-## Project shape
-
-Not everything here should be a prompt skill.
-
-The repository is intended to include a mix of:
-
-- methods and research protocols
+- method docs and research protocols
 - CLI tools and reusable libraries
-- workflows and skills
-- datasets and benchmark packs
-- notebooks and reproducible pipelines
+- workflow/skill wrappers over those tools
+- benchmark datasets and scoring tasks
 - reports and worked investigations
-- agent interfaces built on top of the above
+- agent interfaces that orchestrate the above
 
-The standard is practical truth-seeking, not prompt cleverness.
+## Scope map
 
-## Core workstreams
+Current workstreams (summarized):
 
-### Discovery
+- discovery and retrieval
+- archives and recovery
+- reverse search
+- provenance graphs and lineage tracing
+- source criticism and textual lineage
+- media/authorship forensics
+- research protocol design
+- benchmark and evaluation systems
 
-Find hard-to-find, obscure, forgotten, or deliberately buried material.
+For detailed scope, priorities, and phases, see [ROADMAP.md](ROADMAP.md).
 
-### Archives and recovery
+## Architecture direction
 
-Treat archives as a first-class research surface: Wayback, archive mirrors,
-snapshots, deleted-page recovery, and historical comparison.
+Long-term UX goal: a simple truth-seeking agent (or agent system).
 
-### Reverse search
+Implementation strategy: build bottom-up and keep the core inspectable.
 
-Trace origins of images, quotes, phrases, paragraphs, code fragments, and other
-reused artifacts.
-
-### Provenance graphs and lineage tracing
-
-Follow both explicit citations and likely implicit upstream sources.
-
-### Source criticism and textual lineage
-
-Adapt rigorous scholarly methods for reconstructing dependence, transmission,
-and lost intermediates.
-
-### Media and authorship forensics
-
-Analyze authenticity and authorship indicators without pretending to deliver
-impossible certainty.
-
-### Research protocols and epistemic method
-
-Build evidence-ledger, uncertainty-reporting, and adversarial-verification
-workflows that keep investigation disciplined.
-
-### Benchmarks and evaluation
-
-Measure whether tools and workflows actually improve truth-seeking rather than
-merely sounding impressive.
-
-## Architecture
-
-The end goal is an **easy-to-use truth-seeking agent or agent system**.
-
-But the repository is being built **toolkit-first**.
-
-That means the agent is not the foundation. The intended stack is:
+Layering model:
 
 1. methods
 2. tools
-3. workflows / skills
-4. agent
-5. multi-agent orchestration only if benchmarks show it is justified
+3. workflows/skills
+4. agent interface
+5. multi-agent orchestration only if benchmarks show clear gains
 
-The agent should be a **thin orchestration layer** over explicit methods,
-inspectable tools, and benchmarked workflows.
+Architecture details are in [docs/architecture.md](docs/architecture.md).
 
-A user-facing system built from this repo should be able to show:
+## Design stance
 
-- what it did
-- what sources it checked
-- what evidence it found
-- what inferences it made
-- what uncertainty remains
-- where it failed or became speculative
+The project prioritizes:
 
-## Principles
+- evidence quality over rhetorical polish
+- provenance visibility over black-box conclusions
+- calibrated uncertainty over fake certainty
+- reproducibility over one-off demos
 
-1. **Truth over fluency.** A polished answer is not enough.
-2. **Sources over vibes.** Claims should point somewhere.
-3. **Lineage matters.** Where information came from is part of what it is.
-4. **Uncertainty stays visible.** Confidence is not certainty.
-5. **Reproducibility matters.** Others should be able to inspect the path.
-6. **Humans remain responsible.** LLMs assist; they do not absolve.
-7. **Methods should survive adversarial pressure.** If a method breaks under mild challenge, it is not good enough.
+Canonical principles live in
+[docs/design-principles.md](docs/design-principles.md).
 
-## Important cautions
-
-- This project is **not** an excuse to market weak heuristics as decisive “AI detection.”
-- Citation presence is **not** proof of truth.
-- Similarity is **not** the same thing as provenance.
-- LLM fluency must **not** replace source access.
-- Missing data and weak links should remain visible in outputs.
+Reporting expectations live in
+[docs/reporting-format.md](docs/reporting-format.md).
 
 ## Current status
 
-The repository is in its early design and scaffolding phase.
+The repository is in early design + scaffold mode.
 
-Current work so far:
+Completed so far:
 
-- thesis and scope definition
-- roadmap for major workstreams
-- architecture for toolkit-first, agent-second development
-- contribution guidance for humans and agents
+- scope and roadmap
+- architecture document
+- contribution guidance (human + agent)
 - AGPL licensing
-- repository directory skeleton aligned with the architecture doc
+- initial directory skeleton aligned with architecture
 - baseline design-principles and reporting-format docs
-
-## License
-
-GNU Affero General Public License, version 3 or later.
 
 ## Read next
 
@@ -150,4 +93,8 @@ GNU Affero General Public License, version 3 or later.
 - [docs/reporting-format.md](docs/reporting-format.md)
 - [CONTRIBUTING.md](CONTRIBUTING.md)
 - [AGENTS.md](AGENTS.md)
-- [LICENSE](LICENSE)
+
+## License
+
+GNU Affero General Public License, version 3 or later.
+See [LICENSE](LICENSE).
