@@ -1,0 +1,39 @@
+{
+  "fixtureId": "trend-fixture-003-high-impact-manual-review",
+  "version": "0.1.0",
+  "taskType": "trend-alert-gating",
+  "description": "Potentially high-impact topic with weak corroboration should generate low-confidence manual-review alert.",
+  "windowSeconds": 1800,
+  "events": [
+    {
+      "eventId": "ev-201",
+      "sourceId": "reddit-worldnews",
+      "clusterId": "c-impact-1",
+      "capturedAt": "2026-04-01T03:00:00Z",
+      "title": "Unconfirmed reports of major infrastructure incident"
+    },
+    {
+      "eventId": "ev-202",
+      "sourceId": "hn-frontpage",
+      "clusterId": "c-impact-1",
+      "capturedAt": "2026-04-01T03:07:00Z",
+      "title": "Discussion links to unverified incident reports"
+    },
+    {
+      "eventId": "ev-203",
+      "sourceId": "aljazeera-all",
+      "clusterId": "c-impact-1",
+      "capturedAt": "2026-04-01T03:18:00Z",
+      "title": "Breaking: officials investigating infrastructure disruption"
+    }
+  ],
+  "groundTruth": {
+    "isMaterialTrend": "uncertain"
+  },
+  "expected": {
+    "shouldEmitAlert": true,
+    "expectedConfidence": "low",
+    "expectedWorkflow": "manual-review",
+    "maximumCorroborationScore": 0.45
+  }
+}

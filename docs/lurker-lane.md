@@ -71,6 +71,21 @@ Machine-readable formats:
 
 These should be treated as canonical for tooling interchange.
 
+## Implemented phase-2 artifacts
+
+- RSS adapter contract:
+  - `tools/common/RSS-ADAPTER-CONTRACT.md`
+- baseline source profile:
+  - `tools/common/sources/lurker-baseline-sources.json`
+- scoring defaults:
+  - `tools/common/TREND-SCORING.md`
+- TrendAlert -> investigation adapter:
+  - `tools/common/TRENDALERT-INVESTIGATION-ADAPTER.md`
+- seeded trend benchmark fixtures:
+  - `benchmarks/datasets/trend-fixture-001-single-source-noise.json`
+  - `benchmarks/datasets/trend-fixture-002-multi-source-breakout.json`
+  - `benchmarks/datasets/trend-fixture-003-high-impact-manual-review.json`
+
 ## Ingestion policy (operational)
 
 Default policy:
@@ -147,7 +162,8 @@ Track at minimum:
 
 ## Open implementation tasks
 
-- implement source adapters (RSS first, then selective social)
-- finalize scoring formula and thresholds
+- implement executable RSS adapter from contract (with persistent state + conditional requests)
 - define persistent storage model for event/cluster history
-- build adapter from `TrendAlert` to investigation request schema
+- tune scoring thresholds against benchmark precision/recall results
+- implement executable TrendAlert -> investigation request adapter
+- add social/API adapters after RSS baseline is stable

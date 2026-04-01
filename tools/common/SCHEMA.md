@@ -192,3 +192,10 @@ For live-trend monitoring and alert routing, use:
 Design notes for this lane are in:
 
 - `docs/lurker-lane.md`
+
+Companion specs:
+
+- `tools/common/RSS-ADAPTER-CONTRACT.md`
+- `tools/common/TREND-SCORING.md`
+- `tools/common/TRENDALERT-INVESTIGATION-ADAPTER.md`
+- `tools/common/sources/lurker-baseline-sources.json`

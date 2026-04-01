@@ -90,6 +90,7 @@ Completed so far:
 - first 3 dork-derived benchmark fixtures
 - DorXNG fork established under KVC (`Kyvero-Vexus/DorXNG`)
 - lurker lane design + trend event/alert schemas for tooling-first live monitoring
+- lurker phase-2 planning artifacts (RSS adapter contract, baseline source profile, scoring defaults, TrendAlert adapter spec, trend benchmark fixtures)
 
 ## Read next
 
@@ -102,6 +103,10 @@ Completed so far:
 - [docs/dork-migration-notes.md](docs/dork-migration-notes.md)
 - [docs/lurker-lane.md](docs/lurker-lane.md)
 - [tools/common/SCHEMA.md](tools/common/SCHEMA.md)
+- [tools/common/RSS-ADAPTER-CONTRACT.md](tools/common/RSS-ADAPTER-CONTRACT.md)
+- [tools/common/TREND-SCORING.md](tools/common/TREND-SCORING.md)
+- [tools/common/TRENDALERT-INVESTIGATION-ADAPTER.md](tools/common/TRENDALERT-INVESTIGATION-ADAPTER.md)
+- [tools/common/sources/lurker-baseline-sources.json](tools/common/sources/lurker-baseline-sources.json)
 - [tools/archive/CONTRACT.md](tools/archive/CONTRACT.md)
 - [tools/reverse-search/CONTRACT.md](tools/reverse-search/CONTRACT.md)
 - [CONTRIBUTING.md](CONTRIBUTING.md)

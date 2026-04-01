@@ -1,0 +1,45 @@
+{
+  "fixtureId": "trend-fixture-001-single-source-noise",
+  "version": "0.1.0",
+  "taskType": "trend-alert-gating",
+  "description": "High message volume from a single source should not produce a high-confidence alert.",
+  "windowSeconds": 1800,
+  "events": [
+    {
+      "eventId": "ev-001",
+      "sourceId": "reddit-worldnews",
+      "clusterId": "c-noise-1",
+      "capturedAt": "2026-04-01T01:00:00Z",
+      "title": "Unverified claim starts circulating"
+    },
+    {
+      "eventId": "ev-002",
+      "sourceId": "reddit-worldnews",
+      "clusterId": "c-noise-1",
+      "capturedAt": "2026-04-01T01:05:00Z",
+      "title": "Same claim reposted"
+    },
+    {
+      "eventId": "ev-003",
+      "sourceId": "reddit-worldnews",
+      "clusterId": "c-noise-1",
+      "capturedAt": "2026-04-01T01:10:00Z",
+      "title": "Same claim reposted again"
+    },
+    {
+      "eventId": "ev-004",
+      "sourceId": "reddit-worldnews",
+      "clusterId": "c-noise-1",
+      "capturedAt": "2026-04-01T01:14:00Z",
+      "title": "Discussion thread expands"
+    }
+  ],
+  "groundTruth": {
+    "isMaterialTrend": false
+  },
+  "expected": {
+    "shouldEmitAlert": false,
+    "maxConfidence": "low",
+    "expectedReason": "insufficient-corroboration"
+  }
+}

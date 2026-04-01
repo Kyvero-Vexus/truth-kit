@@ -68,10 +68,17 @@ How we use it:
 
 ### Lurker integration (phase 2)
 
-- [ ] Add RSS-first source adapter contract and baseline source list
-- [ ] Define trend scoring formula + threshold defaults (velocity/novelty/corroboration)
-- [ ] Add adapter spec from `TrendAlert` -> retrieval/provenance investigation request
-- [ ] Add benchmark fixtures for trend-detection precision/recall evaluation
+- [x] Add RSS-first source adapter contract and baseline source list
+- [x] Define trend scoring formula + threshold defaults (velocity/novelty/corroboration)
+- [x] Add adapter spec from `TrendAlert` -> retrieval/provenance investigation request
+- [x] Add benchmark fixtures for trend-detection precision/recall evaluation
+
+### Lurker integration (phase 3)
+
+- [ ] Implement executable RSS adapter with conditional requests + persistent poll state
+- [ ] Implement executable TrendAlert -> investigation request adapter
+- [ ] Define and run first precision/recall evaluation pass on trend fixtures
+- [ ] Add source-health tracking and auto-slowdown policy implementation
 
 ### Documentation / project ops
 
@@ -93,3 +100,6 @@ How we use it:
 - [x] Seeded first 3 dork-derived benchmark fixtures in `benchmarks/datasets/`
 - [x] Added `docs/lurker-lane.md` (tooling-first live trend lane design)
 - [x] Added `trend-event` + `trend-alert` schemas in `tools/common/schemas/`
+- [x] Added RSS adapter contract + baseline source profile for lurker lane
+- [x] Added trend scoring defaults and TrendAlert -> investigation adapter spec
+- [x] Seeded first trend benchmark fixtures (precision/recall gating scenarios)
