@@ -110,3 +110,4 @@ How we use it:
 - [x] Added RSS adapter contract + baseline source profile for lurker lane
 - [x] Added trend scoring defaults and TrendAlert -> investigation adapter spec
 - [x] Seeded first trend benchmark fixtures (precision/recall gating scenarios)
+- [x] Added MVP use cases + issue-ready specs doc (`docs/mvp-use-cases-and-issue-specs.md`)
