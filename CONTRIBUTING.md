@@ -56,6 +56,14 @@ libraries, not only as prompts or opaque agent behaviors.
 If you add a new capability, think about how it could be evaluated. A tool or
 workflow that cannot be checked tends to drift into theater.
 
+### 6. Be courteous to shared infrastructure
+
+When building retrieval-heavy tools/workflows, avoid hammering upstream
+systems.
+
+Prefer caching, bounded concurrency, backoff, and rate-limit-aware behavior.
+If a source appears degraded or asks you to slow down, slow down.
+
 ## Architecture expectations
 
 `truth-kit` is intentionally **toolkit-first**.

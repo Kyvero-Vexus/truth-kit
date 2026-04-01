@@ -86,6 +86,20 @@ This is a public repository. Keep outputs safe for publication:
 - no private corpora without permission
 - no unverifiable claims presented as fact
 
+## 11) Infrastructure courtesy and load discipline
+
+The internet is shared infrastructure. Retrieval methods should minimize
+avoidable load on source systems.
+
+Default expectations:
+
+- cache fetched artifacts when practical and reuse cached results when freshness allows
+- avoid bursty request patterns and aggressive polling
+- respect rate limits, robots policy where applicable, and `Retry-After` hints
+- use bounded concurrency + exponential backoff for retries
+- prefer incremental refresh over repeated full re-fetches
+- slow down or stop when a source appears degraded or overloaded
+
 ---
 
 For architecture details, see [architecture.md](architecture.md).

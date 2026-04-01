@@ -23,6 +23,7 @@ When implementing work in this repo:
 - preserve evidence trails and source lineage
 - keep uncertainty visible in outputs
 - avoid confident prose that outruns evidence
+- practice infrastructure courtesy: cache when practical and avoid hammering sources
 
 ## Architecture constraints (agent-specific)
 
