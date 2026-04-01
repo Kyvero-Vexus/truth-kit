@@ -48,6 +48,20 @@ def _parse_time(value: str) -> datetime:
     return datetime.fromisoformat(value.replace("Z", "+00:00"))
 
 
+def _safe_parse_time(value: str) -> Tuple[datetime, bool]:
+    try:
+        return _parse_time(value), True
+    except Exception:
+        return _parse_time("9999-12-31T00:00:00Z"), False
+
+
+def _normalize_url(url: str) -> str:
+    parsed = urlparse((url or "").strip())
+    host = (parsed.netloc or "").lower()
+    path = parsed.path.rstrip("/")
+    return f"{host}{path}"
+
+
 def _tokenize(text: str) -> List[str]:
     return [t for t in re.findall(r"[a-z0-9']+", text.lower()) if t and t not in STOPWORDS]
 
@@ -86,9 +100,9 @@ def _extract_documents(inputs: Sequence[Dict[str, Any]]) -> List[Dict[str, Any]]
     return docs
 
 
-def _relationship_for_doc(doc: Dict[str, Any], earliest_url: str, overlap: float) -> str:
-    citations = set(doc.get("citations") or [])
-    if citations or earliest_url in citations:
+def _relationship_for_doc(doc: Dict[str, Any], relevant_source_urls: set[str], overlap: float) -> str:
+    citations = {_normalize_url(c) for c in set(doc.get("citations") or [])}
+    if citations & relevant_source_urls:
         return "explicit-citation"
 
     host = _provider_from_url(doc.get("url", ""))
@@ -163,7 +177,16 @@ def trace_claim_origin(request: Dict[str, Any]) -> Dict[str, Any]:
         overlap = _jaccard(query_tokens, _tokenize(doc.get("text", "")))
         ranked.append((doc, overlap))
 
-    ranked.sort(key=lambda x: (_parse_time(x[0].get("publishedAt", "9999-12-31T00:00:00Z")), -x[1]))
+    malformed_published_at = 0
+    ranked_with_time: List[Tuple[Dict[str, Any], float, datetime]] = []
+    for doc, overlap in ranked:
+        parsed_time, is_valid_time = _safe_parse_time(doc.get("publishedAt", ""))
+        if not is_valid_time:
+            malformed_published_at += 1
+        ranked_with_time.append((doc, overlap, parsed_time))
+
+    ranked_with_time.sort(key=lambda x: (x[2], -x[1]))
+    ranked = [(doc, overlap) for doc, overlap, _ in ranked_with_time]
 
     if all(overlap <= 0.0 for _, overlap in ranked):
         response["status"] = "partial"
@@ -175,12 +198,11 @@ def trace_claim_origin(request: Dict[str, Any]) -> Dict[str, Any]:
         )
         return response
 
-    earliest = ranked[0][0]
-    earliest_url = earliest["url"]
+    relevant_source_urls: set[str] = set()
 
     for idx, (doc, overlap) in enumerate(ranked, start=1):
-        relationship = _relationship_for_doc(doc, earliest_url, overlap)
-        has_citation = bool(doc.get("citations")) or earliest_url in set(doc.get("citations") or [])
+        relationship = _relationship_for_doc(doc, relevant_source_urls, overlap)
+        has_citation = bool({_normalize_url(c) for c in set(doc.get("citations") or [])} & relevant_source_urls)
         confidence = _confidence_for_doc(overlap, relationship, has_citation)
 
         evidence_id = f"ev-{idx}"
@@ -219,11 +241,24 @@ def trace_claim_origin(request: Dict[str, Any]) -> Dict[str, Any]:
             }
         )
 
+        relevant_source_urls.add(_normalize_url(doc.get("url", "")))
+
     if any(item[1] < 0.2 for item in ranked):
         response["uncertainty"].append(
             {
                 "code": "low-overlap-candidates",
                 "message": "Some downstream candidates have weak lexical overlap; earlier unseen sources remain possible.",
+            }
+        )
+
+    if malformed_published_at:
+        response["uncertainty"].append(
+            {
+                "code": "malformed-published-at",
+                "message": (
+                    f"{malformed_published_at} candidate document(s) had invalid publishedAt values; "
+                    "time-based ranking used a fallback order for those entries."
+                ),
             }
         )
 

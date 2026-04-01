@@ -135,6 +135,82 @@ class ClaimOriginTracerTests(unittest.TestCase):
             [item["resultId"] for item in second["results"]],
         )
 
+    def test_irrelevant_citation_does_not_trigger_explicit_citation(self):
+        request = {
+            "schemaVersion": "0.1.0",
+            "requestId": "irrelevant-citation",
+            "queryType": "reverse.text",
+            "inputs": [
+                {
+                    "kind": "text",
+                    "value": "alpha beta gamma",
+                    "metadata": {
+                        "documents": [
+                            {
+                                "docId": "src-1",
+                                "url": "https://example.com/source",
+                                "text": "alpha beta gamma",
+                                "publishedAt": "2024-01-01T00:00:00Z",
+                            },
+                            {
+                                "docId": "downstream-1",
+                                "url": "https://example.com/downstream",
+                                "text": "alpha beta gamma",
+                                "publishedAt": "2024-01-02T00:00:00Z",
+                                "citations": ["https://irrelevant.example.org/not-source"],
+                            },
+                        ]
+                    },
+                }
+            ],
+        }
+
+        response = module.trace_claim_origin(request)
+        results_by_id = {item["resultId"]: item for item in response["results"]}
+
+        self.assertIn("downstream-1", results_by_id)
+        self.assertNotEqual(
+            results_by_id["downstream-1"]["provenance"]["relationship"],
+            "explicit-citation",
+        )
+
+    def test_malformed_published_at_does_not_crash_and_returns_structured_response(self):
+        request = {
+            "schemaVersion": "0.1.0",
+            "requestId": "bad-published-at",
+            "queryType": "reverse.text",
+            "inputs": [
+                {
+                    "kind": "text",
+                    "value": "alpha beta gamma",
+                    "metadata": {
+                        "documents": [
+                            {
+                                "docId": "src-good",
+                                "url": "https://example.com/source",
+                                "text": "alpha beta gamma",
+                                "publishedAt": "2024-01-01T00:00:00Z",
+                            },
+                            {
+                                "docId": "bad-time",
+                                "url": "https://example.com/bad",
+                                "text": "alpha beta gamma",
+                                "publishedAt": "not-a-timestamp",
+                            },
+                        ]
+                    },
+                }
+            ],
+        }
+
+        response = module.trace_claim_origin(request)
+
+        self.assertIn("status", response)
+        self.assertIn("results", response)
+        self.assertTrue(any(item["resultId"] == "bad-time" for item in response["results"]))
+        codes = {item["code"] for item in response["uncertainty"]}
+        self.assertIn("malformed-published-at", codes)
+
 
 if __name__ == "__main__":
     unittest.main()
