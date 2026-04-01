@@ -58,12 +58,20 @@ How we use it:
 - [ ] Create benchmark task + scoring docs for the 3 seeded dork fixtures
 - [ ] Draft orchestration notes for hybrid mode (delegate discovery, native reporting)
 
-### Lurker integration
+### Lurker integration (phase 1)
 
-- [ ] Add `docs/lurker-lane.md` with live-monitoring scope, sources, and alert contract
-- [ ] Define trend-event schema (topic, confidence, why-it-matters, evidence links, next step)
-- [ ] Draft ingestion policy for live sources (poll cadence, caching, backoff, quiet hours)
-- [ ] Define escalation rule from trend alert → provenance investigation workflow
+- [x] Add `docs/lurker-lane.md` with live-monitoring scope, sources, and alert contract
+- [x] Define trend-event schema (topic, confidence, why-it-matters, evidence links, next step)
+- [x] Define trend-alert schema for gated escalation output
+- [x] Draft ingestion policy for live sources (poll cadence, caching, backoff, quiet hours)
+- [x] Define escalation rule from trend alert → provenance investigation workflow
+
+### Lurker integration (phase 2)
+
+- [ ] Add RSS-first source adapter contract and baseline source list
+- [ ] Define trend scoring formula + threshold defaults (velocity/novelty/corroboration)
+- [ ] Add adapter spec from `TrendAlert` -> retrieval/provenance investigation request
+- [ ] Add benchmark fixtures for trend-detection precision/recall evaluation
 
 ### Documentation / project ops
 
@@ -83,3 +91,5 @@ How we use it:
 - [x] Drafted `tools/archive/CONTRACT.md` and `tools/reverse-search/CONTRACT.md`
 - [x] Added `docs/dork-migration-notes.md` (delegate vs native execution strategy)
 - [x] Seeded first 3 dork-derived benchmark fixtures in `benchmarks/datasets/`
+- [x] Added `docs/lurker-lane.md` (tooling-first live trend lane design)
+- [x] Added `trend-event` + `trend-alert` schemas in `tools/common/schemas/`

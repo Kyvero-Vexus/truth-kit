@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kyvero-vexus.github.io/truth-kit/schemas/trend-event.schema.json",
+  "title": "TrendEvent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "eventId",
+    "capturedAt",
+    "source",
+    "content",
+    "ingest"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+(\\.[0-9]+)?$"
+    },
+    "eventId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "capturedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source": {
+      "$ref": "#/$defs/source"
+    },
+    "content": {
+      "$ref": "#/$defs/content"
+    },
+    "ingest": {
+      "$ref": "#/$defs/ingest"
+    },
+    "classification": {
+      "$ref": "#/$defs/classification"
+    },
+    "engagement": {
+      "$ref": "#/$defs/engagement"
+    },
+    "links": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceId", "sourceType", "provider"],
+      "properties": {
+        "sourceId": { "type": "string", "minLength": 1 },
+        "sourceType": {
+          "type": "string",
+          "enum": [
+            "rss",
+            "atom",
+            "news-api",
+            "social-api",
+            "forum",
+            "blog",
+            "wire",
+            "other"
+          ]
+        },
+        "provider": { "type": "string", "minLength": 1 },
+        "channel": { "type": "string" },
+        "trustTier": {
+          "type": "string",
+          "enum": ["unknown", "low", "medium", "high"]
+        }
+      }
+    },
+    "content": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url"],
+      "properties": {
+        "url": { "type": "string", "format": "uri" },
+        "canonicalUrl": { "type": "string", "format": "uri" },
+        "title": { "type": "string" },
+        "text": { "type": "string" },
+        "author": { "type": "string" },
+        "language": { "type": "string" },
+        "publishedAt": { "type": "string", "format": "date-time" },
+        "contentHash": { "type": "string" }
+      }
+    },
+    "ingest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fetchMethod", "accessPath", "retrievedAt"],
+      "properties": {
+        "fetchMethod": {
+          "type": "string",
+          "enum": ["rss", "api", "scrape", "webhook", "manual"]
+        },
+        "accessPath": {
+          "type": "string",
+          "enum": ["cache", "network"]
+        },
+        "retrievedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "httpStatus": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 599
+        },
+        "etag": { "type": "string" },
+        "lastModified": { "type": "string" },
+        "responseBytes": { "type": "integer", "minimum": 0 },
+        "retryCount": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "classification": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "topics": { "type": "array", "items": { "type": "string" } },
+        "entities": { "type": "array", "items": { "type": "string" } },
+        "clusterId": { "type": "string" },
+        "noveltyScore": { "type": "number", "minimum": 0, "maximum": 1 },
+        "velocityScore": { "type": "number", "minimum": 0, "maximum": 1 },
+        "corroborationScore": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "engagement": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "likes": { "type": "integer", "minimum": 0 },
+        "reposts": { "type": "integer", "minimum": 0 },
+        "comments": { "type": "integer", "minimum": 0 },
+        "views": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}

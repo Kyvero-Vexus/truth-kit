@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kyvero-vexus.github.io/truth-kit/schemas/trend-alert.schema.json",
+  "title": "TrendAlert",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "alertId",
+    "generatedAt",
+    "status",
+    "topic",
+    "confidence",
+    "summary",
+    "evidence",
+    "nextStep"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+(\\.[0-9]+)?$"
+    },
+    "alertId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "ongoing", "resolved", "suppressed"]
+    },
+    "topic": {
+      "$ref": "#/$defs/topic"
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["high", "medium", "low", "unresolved"]
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["info", "low", "medium", "high", "critical"]
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "whyItMatters": {
+      "type": "string"
+    },
+    "scores": {
+      "$ref": "#/$defs/scores"
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/evidenceItem"
+      }
+    },
+    "uncertainty": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/uncertaintyItem"
+      }
+    },
+    "nextStep": {
+      "$ref": "#/$defs/nextStep"
+    },
+    "dedupeKey": {
+      "type": "string"
+    },
+    "cooldownSeconds": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "topic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label"],
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string", "minLength": 1 },
+        "tags": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "scores": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "velocity": { "type": "number", "minimum": 0, "maximum": 1 },
+        "novelty": { "type": "number", "minimum": 0, "maximum": 1 },
+        "corroboration": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sourceDiversity": { "type": "number", "minimum": 0, "maximum": 1 },
+        "overall": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "evidenceItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["eventId", "sourceId", "url"],
+      "properties": {
+        "eventId": { "type": "string" },
+        "sourceId": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "snippet": { "type": "string" },
+        "publishedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "uncertaintyItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message"],
+      "properties": {
+        "code": { "type": "string" },
+        "message": { "type": "string" }
+      }
+    },
+    "nextStep": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["workflow", "priority"],
+      "properties": {
+        "workflow": {
+          "type": "string",
+          "enum": [
+            "none",
+            "manual-review",
+            "claim-tracing",
+            "archive-recovery",
+            "provenance-analysis"
+          ]
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["p0", "p1", "p2", "p3"]
+        },
+        "delegateTo": {
+          "type": "string",
+          "enum": ["truth-kit-native", "the-dork", "the-lurker", "human"]
+        },
+        "reason": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

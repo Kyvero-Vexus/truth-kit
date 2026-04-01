@@ -89,6 +89,7 @@ Completed so far:
 - shared retrieval/provenance schema draft + archive/reverse contracts
 - first 3 dork-derived benchmark fixtures
 - DorXNG fork established under KVC (`Kyvero-Vexus/DorXNG`)
+- lurker lane design + trend event/alert schemas for tooling-first live monitoring
 
 ## Read next
 
@@ -99,6 +100,7 @@ Completed so far:
 - [docs/reporting-format.md](docs/reporting-format.md)
 - [docs/dork-capability-map.md](docs/dork-capability-map.md)
 - [docs/dork-migration-notes.md](docs/dork-migration-notes.md)
+- [docs/lurker-lane.md](docs/lurker-lane.md)
 - [tools/common/SCHEMA.md](tools/common/SCHEMA.md)
 - [tools/archive/CONTRACT.md](tools/archive/CONTRACT.md)
 - [tools/reverse-search/CONTRACT.md](tools/reverse-search/CONTRACT.md)

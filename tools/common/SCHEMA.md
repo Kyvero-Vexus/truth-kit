@@ -181,3 +181,14 @@ All tools implementing this schema should:
 - respect `Retry-After` and declared rate limits
 - cap concurrency and use backoff retries
 - annotate whether each retrieval came from cache or network
+
+## Lurker lane schemas (trend monitoring)
+
+For live-trend monitoring and alert routing, use:
+
+- `tools/common/schemas/trend-event.schema.json`
+- `tools/common/schemas/trend-alert.schema.json`
+
+Design notes for this lane are in:
+
+- `docs/lurker-lane.md`
