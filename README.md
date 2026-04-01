@@ -35,6 +35,14 @@ The working thesis is simple: large language models are not truth machines, but 
 
 Initial repository scaffold. README first; tools and methods next.
 
-See also:
+## License
+
+GNU Affero General Public License, version 3 or later.
+
+## See also
+
 - [ROADMAP.md](ROADMAP.md)
 - [docs/architecture.md](docs/architecture.md)
+- [CONTRIBUTING.md](CONTRIBUTING.md)
+- [AGENTS.md](AGENTS.md)
+- [LICENSE](LICENSE)
